@@ -1,0 +1,71 @@
+.loader-wrapper{
+    .loader {
+      margin-top: 20%;
+      span {
+        font-size: 2rem;
+      }
+    }
+  }
+.gist-wrapper {
+  .gist {
+    border-radius: 2rem;
+    .owner {
+      .owner-image img {
+        max-width: 80px;
+        border-radius: 50%;
+      }
+      .owner-detail {
+        .header {
+          font-size: 1.25rem;
+          .user-name {
+            cursor: pointer;
+            color: #046348;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    .gist-description {
+      .theme {
+        .light, .dark {
+          cursor: pointer;
+          transition: 0.8s;
+          border-radius: 0.5rem;
+          &:hover {
+            background: #046348;
+            color: white;
+          }
+        }
+      }
+    }
+    .gist-content {
+      max-height: 600px;
+      overflow: auto;
+      border: 1px solid lightgrey;
+    }
+  }
+  .light-theme {
+    background: white;
+    pre {
+      color: black;
+    }
+  }
+  .dark-theme {
+    background: #282c34;
+    pre {
+      color: white;
+    }
+  }
+}
+
+  @media screen and (max-width: 992px) {
+    .loader-wrapper{
+        .loader {
+          span {
+            font-size: 1.5rem;
+          }
+        }
+      }
+  }

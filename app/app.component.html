@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <!-- navigation  -->
+  <div class="row">
+    <div class="col px-0 mb-3">
+      <nav class="navbar navbar-expand-lg sticky-top navigationbar" id="github-navbar">
+        <!-- app logo  -->
+        <a class="navbar-brand" href="#">
+          <img src="../assets/image/logo.png" width="150px" alt="">
+        </a>
+        <!-- toggle nav bar  -->
+        <button *ngIf="showSearchAndProfile" class="navbar-toggler icon" type="button" data-toggle="collapse"
+          data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon "><i class="fa fa-bars fa-lg" aria-hidden="true"></i></span>
+        </button>
+
+        <!-- navigation bar  -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02" *ngIf="showSearchAndProfile">
+          <form class="form-group ml-auto my-2 my-lg-0 d-flex flex-row justify-content-end">
+            <input class="form-control search mr-2 align-self-center" (keyup)="getSearchValue($event)" type="search"
+              placeholder="Search and Press enter">
+            <!-- template for popover  -->
+            <ng-template #popTemplate>
+              <ul class="p-0 mb-0 profile">
+                <li class="myprofile" (click)="goToMyProfile()">My Profile</li>
+                <hr>
+                <li class="logout" (click)="logout()">Log Out</li>
+              </ul>
+            </ng-template>
+            <!-- Profile picture button  -->
+            <button type="button" class="btn btn-primary p-0 profile-button" [popover]="popTemplate" placement="bottom"
+              [outsideClick]="true">
+              <img [src]="userData.avatar_url">
+            </button>
+          </form>
+        </div>
+      </nav>
+
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

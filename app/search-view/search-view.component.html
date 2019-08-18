@@ -1,0 +1,50 @@
+<!-- User Data When found -->
+<div class="container bg-light my-4 search-wrapper" *ngIf="userData && showContent && !noUserFound  && !showTimeOut">
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-6 p-3 my-3 d-flex flex-column align-items-center search-result"
+      *ngFor="let user of userData.items">
+      <img [src]="user.avatar_url" class="image" alt="Profile Pic">
+      <div class="mt-3 font-weight-bold name">
+        <span (click)="goToUserView(user.login)">{{user.login}}</span>
+      </div>
+      <div class=" mt-2 p-2 viewonGit" (click)="viewOnGit(user.html_url)">View on GitHub</div>
+    </div>
+  </div>
+</div>
+
+<!-- No User found -->
+<div class="container mt-5 nodata" *ngIf="noUserFound && !showTimeOut">
+  <div class="row d-flex flex-column align-items-center">
+    <div class="col-sm-3 col-4 text-center">
+      <img src="../../assets/image/no-user.png" class="w-100" alt="">
+    </div>
+    <div class="col-md-4 col-7 text-center mt-2 noUser-head">
+      <span>No User Found</span>
+    </div>
+    <div class="col-md-4 col-6 text-center mt-3 noUser-content">
+      <span>
+        Sorry, User with Name "<b>{{userName}}</b>" Not Found..!
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- loader -->
+<div class="container loader-wrapper" *ngIf="!showContent && !noUserFound">
+  <div class="row justify-content-center loader">
+    <div class="col-3 col-md-2">
+      <img src="../../assets/image/loader.gif" class="w-100">
+      <span class="mt-3 text-center">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<!-- timeout page -->
+<div class="container mt-5" *ngIf="showContent && showTimeOut">
+  <div class="row justify-content-center">
+    <div class="col-5 text-center">
+      <h1>Time Out</h1>
+      <h3>Please refresh the page</h3>
+    </div>
+  </div>
+</div>

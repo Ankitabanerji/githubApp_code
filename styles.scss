@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display|Ubuntu&display=swap');
+* {
+    box-sizing: border-box;
+}
+:root {  font-size: 16px; }
+
+body {
+    margin: 0;
+    padding: 0;
+    //background: #2F4F4F;
+    background: url(./assets/image/green.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    .navigationbar {
+        background: #4f7942;
+        box-shadow:0px -9px 59px 12px black; 
+        .icon:focus {
+            outline: none;
+        }
+        .profile {
+            list-style-type:none;
+            .myprofile, .logout{
+            &:hover {
+                color: #4f7942;
+                cursor: pointer;
+            }
+
+            }
+        }
+        .profile-button {
+            width:50px;
+            height:40px;
+            background: none;
+            border:none;
+            img {
+                width:50px;
+                height:40px;
+                border-radius: .25rem;
+            }
+        }
+
+    }
+
+
+}
+
+@media screen and (max-width:990px){
+    .search {
+        width: 40%!important;
+    }
+}
+
+// @media screen and (max-width:768px){
+//     body {
+//         background-size: auto;
+//     }
+// }
+

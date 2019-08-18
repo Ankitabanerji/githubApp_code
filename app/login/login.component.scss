@@ -1,0 +1,53 @@
+.box {
+    border-radius: 1rem;
+   background-color:white;
+    //box-shadow:20px 20px 50px grey;
+    form h1 {
+        color:#01412e;
+        font-family:'Red Hat Display', sans-serif; 
+    }
+    input[type="text"], input[type="password"]{
+        border-radius: 1.5rem;
+        border: 0;
+        display: block;
+        text-align: center;
+        margin:auto;
+        background: none;
+        border: 1.5px solid #046348;
+        width:55%;
+        transition: 0.25s;
+        &:focus {
+            width:65%;
+            outline: none;
+            border: 1.5px solid #018862 ;
+        }
+    }
+    input[type="submit"] {
+        border-radius: 1.5rem;
+        border: 0;
+        text-align: center;
+        background: none;
+        border: 1.5px solid #046348 ;
+        width: 40%;
+        &:focus {
+            outline: none;
+        }
+        &:hover {
+            background-color: #55efc4;
+            background-image: linear-gradient(315deg, #024230 0%, #4e4444 74%);
+            border:none;
+            color:white;
+            font-weight: bold;
+        }
+    }
+}
+@media screen and (max-width:1072px){
+    .box {
+        input[type="text"], input[type="password"]{
+            width:75%;
+            &:focus {
+                width:85%;
+            }
+        }
+    }
+}

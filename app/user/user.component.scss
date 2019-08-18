@@ -1,0 +1,235 @@
+.user-profile-wrapper {
+  .user-info {
+    background: white;
+    border-radius: 2rem;
+  }
+  .profile {
+    // background: blueviolet;
+    text-align: center;
+    .image {
+      img {
+        border-radius: 50%;
+        width: 200px;
+        box-shadow: 3px 4px 11px 0 rgba(0, 0, 0, 0.5);
+      }
+    }
+    .view-button {
+      .searchbutton {
+        border-radius: 1.5rem;
+        border: 1.5px solid #046348;
+        background: white;
+        color: #046348;
+        transition: 0.8s;
+        &:hover {
+          color: white;
+          background-image: linear-gradient(315deg, #024230 0%, #4e4444 74%);
+        }
+      }
+    }
+  }
+  .about {
+    width: 37%;
+    .header {
+      .main {
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .sub {
+        font-size: 22px;
+        font-weight: bold;
+        color: #046348;
+      }
+    }
+    .bio-info {
+      font-size: 1.025rem;
+      word-wrap: break-word;
+    }
+    .git-info {
+      font-size: 1.025rem;
+      .icon {
+        width: 15px;
+        color: #046348;
+        font-weight: bold;
+      }
+      .header {
+        width: 100px; 
+        color: #046348;
+        font-weight: bold;
+      }
+    }
+  }
+  .info-number {
+    width: 35%;
+    .follow-info {
+      .follower, .following {
+        .count {
+          font-size: 1.25rem;
+        }
+        .head {
+          border-top: 1px solid #046348;
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #046348;
+        }
+      }
+    }
+    .repo-gist {
+      .repo, .gist {
+        width: 50%;
+        .graph {
+          margin: 0 auto;
+        }
+        .data {
+          .public-rep { 
+            color: #72a435;
+            font-size: 13px;
+          }
+          .private-rep { 
+            color: #96c950;
+            font-size: 13px;
+          }
+          .private-gist {
+            color: #fcbf49;
+            font-size: 13px;
+          }
+          .public-gist {
+            color: #f77f00;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+
+    .users-repo-gist {
+      .publicUsers-repo ,.publicUsers-gist {
+        .count {
+          font-size: 1.25rem;
+        }
+        .head {
+          border-top: 1px solid #046348;
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #046348;
+        }
+      }
+    }
+  }
+  .tab {
+    .user-tabs {
+      color: white;
+      cursor: pointer;
+      .active {
+        background: white;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        font-weight: bold;
+        color: black;
+      }
+    }
+    .user-tabs-details {
+      background: white;
+      border-radius: 0 6px 6px 6px;
+      .header-icon {
+        background: #f77f00;
+        font-size: 40px;
+        font-weight: bold;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        color: white;
+      }
+      .repo-content {
+        .header {
+          font-size: 1.25rem;
+          font-weight: bold;
+        }
+
+      }      
+      .view-repo {
+        max-height: 40px;
+        .searchbutton {
+          border-radius: 1.5rem;
+          border: 1.5px solid #046348;
+          background: white;
+          color: #046348;
+          transition: 0.8s;
+          &:hover {
+            color: white;
+            background-image: linear-gradient(315deg, #024230 0%, #4e4444 74%);
+          }
+        }
+      }
+     .follower-wrapper {
+       .follower {
+         img {
+           border-radius: 50%;
+           width:70px;
+         }
+        span {  
+          font-weight: bold;
+          &:hover {
+            color: #046348;
+          }
+        }
+       }
+     } 
+    }
+  }
+
+}
+
+.loader-wrapper{
+  .loader {
+    margin-top: 20%;
+    span {
+      font-size: 2rem;
+    }
+  }
+}
+@media screen and (max-width: 992px) {
+  .user-profile-wrapper {
+    .about, .info-number {
+      width: 100%;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      .follow-info  {
+        .follower .head, .following .head {
+          font-size: 1.25rem;
+        }
+      }
+      .users-repo-gist {
+        .publicUsers-repo .head ,.publicUsers-gist .head{
+          font-size: 1.25rem;
+        }
+      }
+    }
+    .tab {
+      .user-tabs-details {
+        .header-icon {
+          font-size:25px;
+          width:44px;
+          height:39px;
+        }
+      }
+    }
+  }
+
+  .loader-wrapper{
+    .loader {
+      span {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px){
+  .loader-wrapper{
+    .loader {
+      span {
+        font-size: 1rem;
+      }
+    }
+  }
+}

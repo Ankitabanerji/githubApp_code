@@ -1,0 +1,60 @@
+.loader-wrapper{
+    .loader {
+      margin-top: 20%;
+      span {
+        font-size: 2rem;
+      }
+    }
+  }
+
+.search-wrapper {
+    border-radius: 2rem;
+    .search-result {
+        .image {
+            width: 115px;
+            border-radius: 50%; 
+            box-shadow: 3px 4px 11px 0 rgba(0, 0, 0, 0.5);
+            transition: 0.8s;
+            &:hover{
+                width : 130px;
+            }
+        }
+        .name {
+            color: #046348;
+            cursor: pointer;
+            transition: 0.5s;
+            &:hover{
+                font-size: 1.25rem;
+                text-decoration: underline;
+            }
+        }
+        .viewonGit {
+            border: 1px solid #046348;
+            border-radius: 2rem;
+            &:hover {
+                color: white;
+                background-image: linear-gradient(315deg, #024230 0%, #4e4444 74%);
+                cursor: pointer;
+              }
+        }
+    }
+}
+
+.nodata {
+    .noUser-head{
+        font-size: 2rem;
+    }
+    .noUser-content {
+        font-size: 1.25rem;
+    }
+}
+@media screen and (max-width:985px){
+    .nodata {
+        .noUser-head{
+            font-size: 1.5rem;
+        }
+        .noUser-content {
+            font-size: 1rem;
+        }
+    }  
+}

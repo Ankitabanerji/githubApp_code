@@ -1,0 +1,16 @@
+<div class="container-fluid justify-content-center">
+  <div class="row justify-content-center my-5">
+    <div class="col-9 col-md-6 col-lg-5 box">
+      <!-- Form  -->
+      <form class="text-center p-4" (ngSubmit)="login()">
+        <img src="../../assets/image/dp.png" class="mb-2" width="25%" alt="">
+        <h1 class="mb-4">LOGIN</h1>
+        <input type="text" autocomplete="on" [(ngModel)]="userInfo" name="userInfo" class="mb-3 p-2"
+          placeholder="Email/Username">
+        <input type="password" autocomplete="off" [(ngModel)]="userPassword" name="userPassword" class="mb-3 p-2"
+          placeholder="Password">
+        <input type="submit" class="mb-3 p-2" value="Submit">
+      </form>
+    </div>
+  </div>
+</div>

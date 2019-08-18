@@ -1,0 +1,244 @@
+<!-- loader -->
+<div class="container loader-wrapper" *ngIf="!showContent">
+  <div class="row justify-content-center loader">
+    <div class="col-3 col-md-2">
+      <img src="../../assets/image/loader.gif" class="w-100">
+      <span class="mt-3 text-center">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<!-- user detail -->
+<div class="container my-5 px-0 user-profile-wrapper justify-content-center"
+  *ngIf="userData && showContent && !showTimeOut">
+
+  <!-- Users Details card -->
+  <div class="row justify-content-center">
+    <div class="col-10 col-lg-12 d-flex flex-column flex-lg-row justify-content-around p-3 user-info">
+      <!-- Users Profile Picture and View his/her github account link -->
+      <div class="profile d-flex flex-column justify-content-center">
+        <div class="image">
+          <img [src]="userData.avatar_url">
+        </div>
+        <div class="view-button mt-4">
+          <button class="btn searchbutton my-sm-0 font-weight-bold" (click)="redirect(userData.html_url)">View Github
+            Profile</button>
+        </div>
+      </div>
+
+      <!-- Users name and other important details -->
+      <div class="about d-flex flex-column px-3">
+        <!-- user's Name and Login name -->
+        <div class="header">
+          <span class="main mr-2" *ngIf="userData.name">{{userData.name}}</span>
+          <span class="sub" *ngIf="userData.login">{{userData.login}}</span>
+        </div>
+        <!-- Users Bio -->
+        <div class="bio-info text-justify my-2">
+          <span *ngIf="userData.bio">{{userData.bio}}</span>
+        </div>
+        <!-- Users Git information -->
+        <div class="git-info mt-auto">
+          <div class="d-flex mb-2">
+            <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+            <div class="header"><span class="ml-2">Created on:</span></div>
+            <div><span class="data">{{userData.created_at | date:'dd/MM/yyyy'}}</span></div>
+          </div>
+          <div class="d-flex mb-2">
+            <div class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></div>
+            <div class="header"><span class="ml-2">Company:</span></div>
+            <div class="text-break"><span class="data">{{userData.company!=null?userData.company:'-'}}</span></div>
+          </div>
+          <div class="d-flex mb-2">
+            <div class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+            <div class="header"><span class="ml-2">Email:</span></div>
+            <div class="text-break"><span class="data">{{userData.email!=null?userData.email:'-'}}</span></div>
+          </div>
+          <div class="d-flex mb-2">
+            <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+            <div class="header"><span class="ml-2">Location:</span></div>
+            <div class="text-break"><span class="data">{{userData.location!=null?userData.location:'-'}}</span></div>
+          </div>
+          <div class="d-flex mb-2">
+            <div class="icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+            <div class="header"><span class="ml-2">Blog:</span></div>
+            <div class="text-break"><span class="data">{{userData.blog!=''?userData.blog:'-'}}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Number of followers, repositories and gits of the user -->
+      <div class="info-number d-flex flex-column p-2">
+        <!-- Number of Followers and Followings -->
+        <div class="follow-info d-flex justify-content-around">
+          <div class="p-2 d-flex flex-column follower text-center">
+            <div class="count mb-2">{{userData.followers}}</div>
+            <div class="head">Follower</div>
+          </div>
+          <div class="p-2 d-flex flex-column following text-center">
+            <div class="count mb-2">{{userData.following}}</div>
+            <div class="head">Following</div>
+          </div>
+        </div>
+        <!-- Repository and Gist Graphs for Authenticated users Info -->
+        <div class="repo-gist d-flex justify-content-around mt-auto" *ngIf="isAuthUser">
+          <!-- Repositor Graph Area -->
+          <div class="repo d-flex flex-column justify-content-center" *ngIf="isAuthUser">
+            <div class="graph" id="repoGraph"></div>
+            <div class="data">
+              <div class="px-1 px-md-3">
+                <i class="fa fa-circle private-rep" aria-hidden="true"></i>
+                <span class="ml-md-2 ml-1">Private Repo</span>
+                <span class="float-right font-weight-bold">{{userData.total_private_repos}}</span>
+              </div>
+              <div class="px-1 px-md-3">
+                <i class="fa fa-circle public-rep" aria-hidden="true"></i>
+                <span class="ml-md-2 ml-1">Public Repo</span>
+                <span class="float-right font-weight-bold">{{userData.public_repos}}</span>
+              </div>
+            </div>
+          </div>
+          <!-- Gists Graph Area -->
+          <div class="gist d-flex flex-column justify-content-center" *ngIf="isAuthUser">
+            <div class="graph" id="gistGraph"></div>
+            <div class="data">
+              <div class="px-1 px-md-3">
+                <i class="fa fa-circle private-gist" aria-hidden="true"></i>
+                <span class="ml-md-2 ml-1">Private Gists</span>
+                <span class="float-right font-weight-bold">{{userData.private_gists}}</span>
+              </div>
+              <div class="px-1 px-md-3">
+                <i class="fa fa-circle public-gist" aria-hidden="true"></i>
+                <span class="ml-md-2 ml-1">Public Gists</span>
+                <span class="float-right font-weight-bold">{{userData.public_gists}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Repository and Gist Graphs for Unauthenticated users Info -->
+        <div class="users-repo-gist d-flex justify-content-around mt-auto" *ngIf="!isAuthUser">
+          <div class="p-2 d-flex flex-column publicUsers-repo text-center">
+            <div class="count mb-2">{{userData.public_repos}}</div>
+            <div class="head">Public Repos</div>
+          </div>
+          <div class="p-2 d-flex flex-column publicUsers-gist text-center">
+            <div class="count mb-2">{{userData.public_gists}}</div>
+            <div class="head">Public Gist</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- List of repositories, gists and followers -->
+  <div class="row justify-content-center mt-4 tab">
+    <!-- Tabes to select -->
+    <div class="col-10 col-lg-12 user-tabs d-flex px-0">
+      <div class="p-2 p-md-3" *ngFor="let tab of tabHeaders.list" [ngClass]="{'active':tabHeaders.active == tab}"
+        (click)="selectTab(tab)">{{tab}}</div>
+    </div>
+    <!-- Selected Tab content -->
+    <div class="col-10 col-lg-12 user-tabs-details p-3">
+      <!-- List of Repositiories Section -->
+      <div *ngIf="tabHeaders.active == 'Repositories' && showRepoList">
+        <div class="d-flex flex-row px-2 py-3" [ngClass]="{'border-bottom' : i!=repoList.length-1}"
+          *ngFor="let repo of repoList;let i = index">
+          <div class="header-icon align-self-md-center text-uppercase" [ngStyle]="{'background': colors[repo.color]}">
+            {{repo.data.name.charAt(0)}}</div>
+          <div class="d-flex flex-column ml-2 ml-md-4 repo-content w-75">
+            <div class="header">{{repo.data.name}}</div>
+            <div class="description" *ngIf="repo.data.description!=null">{{repo.data.description}}</div>
+            <div class="language">
+              <span class="font-weight-bold">Language Used: </span>{{repo.data.language}}
+              <span class="font-weight-bold ml-md-2">Created On: </span>{{repo.data.created_at | date:'dd/MM/yyy'}}
+            </div>
+            <div class="view-repo d-block d-md-none mt-2">
+              <button class="btn searchbutton my-sm-0 font-weight-bold" (click)="redirect(repo.data.html_url)">
+                View on GitHub
+              </button>
+            </div>
+          </div>
+          <div class="ml-auto view-repo align-self-center d-none d-md-block">
+            <button class="btn searchbutton my-sm-0 font-weight-bold" (click)="redirect(repo.data.html_url)">
+              View on GitHub
+            </button>
+          </div>
+        </div>
+        <div *ngIf="repoList.length == 0" class="px-2 py-3">No Repository Found</div>
+      </div>
+      <!-- Tab spinner -->
+      <div *ngIf="tabHeaders.active == 'Repositories' && !showRepoList">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <!-- List of Gists Selction -->
+      <div *ngIf="tabHeaders.active == 'Gists' && showGistList">
+        <div class="d-flex flex-row px-2 py-3" [ngClass]="{'border-bottom' : i!=gistList.length-1}"
+          *ngFor="let gist of gistList;let i = index">
+          <div class="header-icon align-self-md-center text-uppercase" [ngStyle]="{'background': colors[gist.color]}">
+            {{gist.data.filename.charAt(0)}}</div>
+          <div class="d-flex flex-column ml-2 ml-md-4 repo-content w-75">
+            <div class="header">{{gist.data.filename}}</div>
+            <div class="description" *ngIf="gist.description!=null">{{gist.description}}</div>
+            <div class="language">
+              <span class="font-weight-bold">Language Used: </span>{{gist.data.language}}
+              <span class="font-weight-bold ml-md-2">Created On: </span>{{gist.createdAt | date:'dd/MM/yyy'}}
+            </div>
+            <div class="view-repo d-block d-md-none mt-2">
+              <button class="btn searchbutton my-sm-0 font-weight-bold" (click)="viewGist(gist.id)">
+                View Gist
+              </button>
+            </div>
+          </div>
+          <div class="ml-auto view-repo align-self-center d-none d-md-block">
+            <button class="btn searchbutton my-sm-0 font-weight-bold" (click)="viewGist(gist.id)">
+              View Gist
+            </button>
+          </div>
+        </div>
+        <div *ngIf="gistList.length == 0" class="px-2 py-3">No Gists Found</div>
+      </div>
+      <!-- Gist spinner -->
+      <div *ngIf="tabHeaders.active == 'Gists' && !showGistList">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <!-- List of Followers Selction -->
+      <div class="row follower-wrapper" *ngIf="tabHeaders.active == 'Followers' && showFollowerList">
+        <div class="col-md-4 col-9 d-flex mb-3 follower" *ngFor="let user of followerList">
+          <img [src]="user.dp" width="100px">
+          <span class="my-auto ml-2" (click)="goToUserProfil(user.login)" style="cursor: pointer">{{user.login}}</span>
+        </div>
+        <div *ngIf="followerList.length == 0" class="px-2 py-3">No Followers Found</div>
+      </div>
+
+      <!-- follower spinner -->
+      <div *ngIf="tabHeaders.active == 'Followers' && !showFollowerList">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- timeout page -->
+<div class="container mt-5" *ngIf="showContent && showTimeOut && !error404">
+  <div class="row justify-content-center">
+    <div class="col-5 text-center">
+      <h1>Time Out</h1>
+      <h3>Please refresh the page</h3>
+    </div>
+  </div>
+</div>
+
+<!-- 404 error -->
+<div *ngIf="error404">
+  <app-not-found></app-not-found>
+</div>
